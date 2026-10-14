@@ -28,24 +28,79 @@ class HomeScreen extends StatelessWidget {
     ),
   );
   }
+
+  // const data = [
+  //   {
+  //     image: "https://api.github.com/repos/maksudbhuiyan595/asen-bazar-kori",
+  //     title: "Maksud"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
+  //     title: "Rahim"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400",
+  //     title: "Sarah"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400",
+  //     title: "David"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400",
+  //     title: "Emma"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=400",
+  //     title: "Alex"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400",
+  //     title: "Ayesha"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+  //     title: "John"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1548142813-c348350df52b?w=400",
+  //     title: "Olivia"
+  //   },
+  //   {
+  //     image: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=400",
+  //     title: "Michael"
+  //   }
+  // ];
+
+
+
   MyAlertDialog(context){
     return showDialog(
-        context: context, 
+        context: context,
         builder: (BuildContext context){
           return Expanded(
               child: AlertDialog(
-                title: Text("Alert ......!"),
+                title: Text("Alert me ...."),
                 content: Text("Do you want to delete ?"),
                 actions: [
-                  TextButton(onPressed: (){}, child: Text('Yes'))
+                  TextButton(onPressed: (){
+                    mySnackBar("Successfully deleted", context);
+                  }, child: Text("Yes")),
+                  TextButton(onPressed: (){
+                    Navigator.of(context).pop();
+                  }, child: Text("No"))
                 ],
               )
-          )
+          );
         }
-    )
+    );
   }
   @override
   Widget build(BuildContext context) {
+
+    ButtonStyle buttonStyle=ElevatedButton.styleFrom(
+      minimumSize: Size(double.infinity, 60)
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text("Todo app"),
@@ -131,14 +186,40 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // body: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: [
+      //     Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
+      //     Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
+      //     Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
+      //   ],
+      // ),
+      // body: Center(
+      //   child: ElevatedButton(onPressed: (){
+      //     MyAlertDialog(context);
+      //   }, child: Text("click me")),
+      // )
+
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
-          Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
-          Container(height: 100,width: 100,child: Image.network("https://my-showcase-story-62.lovable.app/assets/profile-DKupR5Xw.jpg"),),
+          Padding(padding: EdgeInsets.all(20),
+            child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'First Name'),),
+          ),
+          Padding(padding: EdgeInsets.all(20),
+            child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Last Name'),),
+          ),
+          Padding(padding: EdgeInsets.all(20),
+            child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Email'),),
+          ),
+          Padding(padding: EdgeInsets.all(20),
+            child: ElevatedButton(onPressed: (){
+
+            }, child: Text("Submit"))
+          ),
         ],
       ),
+
 
 
     );
